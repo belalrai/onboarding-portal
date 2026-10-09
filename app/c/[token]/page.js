@@ -14,6 +14,6 @@ return <div><h1>Welcome, {s.name}</h1><div className="card"><b>{pct}% complete</
 <div className="g"><div>{FORMS.map((f,i)=>{const r=s.forms[f.key];const st=r?r.status:'';return <button key={f.key} className={'step'+(i===cur?' on':'')} onClick={()=>setCur(i)}>{f.title} {st==='submitted'?'(done)':st==='returned'?'(returned)':''}</button>})}</div>
 <div className="card"><h2>{F.title}</h2>{R&&R.status==='returned'&&<p style={{color:'#b3382c'}}><b>HR asks you to update this form:</b> {R.note}</p>}
 {F.f.filter(vis).map(f=>f.t==='file'?<Files key={f.k} f={f} form={F.key} list={d[f.k]} off={off} url={u+'/upload'} onChange={l=>{const x={...d,[f.k]:l};setD(x);saveNow(x)}}/>:<Field key={f.k} f={f} v={d[f.k]} set={set} off={off}/>)}
-{!off&&<><label>Signature: type your full name</label><input value={d.sig||''} onChange={e=>set('sig',e.target.value)}/></>}
+{!off&&<><label>Signature: type your full name</label><input value={d.sig||''} onChange={e=>set('sig',e.target.value)}/><small>The date and time are recorded automatically when you submit.</small></>}
 {off&&<p>Signed by {d.sig} on {d.signedAt}</p>}
 {!off&&<div><button className="alt" onClick={()=>send(false)}>Save draft</button><button onClick={()=>send(true)}>Submit this form</button></div>}<p role="status">{m}</p></div></div></div>}
